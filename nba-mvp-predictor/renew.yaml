@@ -1,0 +1,116 @@
+name: renew
+env:
+  LOG_LEVEL: INFO
+on:
+  schedule:
+   - cron:  '0 12 * * MON' # At 12:00 on Mondays
+  workflow_dispatch: # Allow for manual trigger from github.com
+jobs:
+  # These jobs shall run once the model has be trained.
+  renew-model:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download model from artifact
+        uses: aochmann/actions-download-artifact@master
+        with:
+          name: model.joblib
+          latest: true
+          path: ./
+      - name: Upload model as artifact for 10 more days
+        uses: actions/upload-artifact@v2
+        with: 
+          name: model.joblib
+          path: ./model.joblib
+          retention-days: 10
+  renew-model-performances:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download model performances from artifact
+        uses: aochmann/actions-download-artifact@master
+        with:
+          name: performances.csv
+          latest: true
+          path: ./
+      - name: Upload model performances as artifact for 10 more days
+        uses: actions/upload-artifact@v2
+        with: 
+          name: performances.csv
+          path: ./performances.csv
+          retention-days: 10
+  renew-model-features:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download features from artifact
+        uses: aochmann/actions-download-artifact@master
+        with:
+          name: features.json
+          latest: true
+          path: ./
+      - name: Upload features as artifact for 10 more days
+        uses: actions/upload-artifact@v2
+        with: 
+          name: features.json
+          path: ./features.json
+          retention-days: 10
+  renew-model-input:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download model input from artifact
+        uses: aochmann/actions-download-artifact@master
+        with:
+          name: model_input.csv
+          latest: true
+          path: ./
+      - name: Upload model input as artifact for 10 more days
+        uses: actions/upload-artifact@v2
+        with: 
+          name: model_input.csv
+          path: ./model_input.csv
+          retention-days: 10
+
+  # TODO : Run these jobs if season is over, use an environment variable ?
+  # renew-predictions:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download predictions from artifact
+  #       uses: aochmann/actions-download-artifact@master
+  #       with:
+  #         name: predictions-2024.csv
+  #         latest: true
+  #         path: ./
+  #     - name: Upload predictions as artifact for 10 more days
+  #       uses: actions/upload-artifact@v2
+  #       with: 
+  #         name: predictions-2024.csv
+  #         path: ./predictions-2024.csv
+  #         retention-days: 10
+  # renew-shap-values:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download shap values from artifact
+  #       uses: aochmann/actions-download-artifact@master
+  #       with:
+  #         name: shap_values-2024.csv
+  #         latest: true
+  #         path: ./
+  #     - name: Upload predictions as artifact for 10 more days
+  #       uses: actions/upload-artifact@v2
+  #       with: 
+  #         name: shap_values-2024.csv
+  #         path: ./shap_values-2024.csv
+  #         retention-days: 10
+  # renew-predictions-history:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download predictions history from artifact
+  #       uses: aochmann/actions-download-artifact@master
+  #       with:
+  #         name: history-2024.csv
+  #         latest: true
+  #         path: ./
+  #     - name: Upload history as artifact for 10 more days
+  #       uses: actions/upload-artifact@v2
+  #       with: 
+  #         name: history-2024.csv
+  #         path: ./history-2024.csv
+  #         retention-days: 10
