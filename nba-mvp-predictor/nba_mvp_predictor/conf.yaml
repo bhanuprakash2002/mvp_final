@@ -1,0 +1,80 @@
+data:
+  model:
+    path: data/model.joblib
+  model-input:
+    path: data/model_input.csv
+    sep: ;
+    encoding: utf-8
+  player-stats:
+    path: data/player_stats.csv.zip
+    sep: ;
+    encoding: utf-8
+    compression: zip
+  mvp-votes:
+    path: data/mvp_votes.csv.zip
+    sep: ;
+    encoding: utf-8
+    compression: zip
+  team-standings:
+    path: data/team_standings.csv.zip
+    sep: ;
+    encoding: utf-8
+    compression: zip
+  bronze:
+    path: data/bronze.csv.zip
+    sep: ;
+    encoding: utf-8
+    compression: zip
+  silver:
+    path: data/silver.csv.zip
+    sep: ;
+    encoding: utf-8
+    compression: zip
+  gold:
+    path: data/gold.csv.zip
+    sep: ;
+    encoding: utf-8
+    compression: zip
+  predictions:
+    path: data/predictions-2024.csv
+    sep: ;
+    encoding: utf-8
+  history:
+    path: data/history-2024.csv
+    sep: ;
+    encoding: utf-8
+  features:
+    path: data/features.json
+    indent: 4
+    encoding: utf-8
+  performances:
+    path: data/performances.csv
+    sep: ;
+    encoding: utf-8
+  shap-values:
+    path: data/shap_values-2024.csv
+    sep: ;
+    encoding: utf-8
+
+web:
+  enable-web: True
+  disabled-web-text: >
+    🌴  
+
+    The MVP Predictor is stopped during summer.  
+    
+    See you at the beginning of next season! 
+  tab-title: "The MVP Predictor"
+  page-title: "The MVP Predict🏀r"
+  github-repo: pauldes/nba-mvp-predictor
+  sidebar-top-text: >
+    **How does it work ?**
+    
+
+    
+    A statistical model is calibrated on historical data (player and team stats, and MVP voting results).
+    It is used to predict this season MVP based on current data.
+    The model predicts the *award share* (the number of points a player received for MVP award over the total points of all first-place votes).
+    This share can be turned into a probability using various methods (see *Predictions parameters*).
+  sidebar-bottom-text: "*Made by Paul ([@wontcalltimeout](https://twitter.com/wontcalltimeout)). Code on [GitHub](https://github.com/pauldes/nba-mvp-predictor).*"
+  enable-google-analytics: False

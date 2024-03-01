@@ -1,0 +1,28 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+requests = "*"
+beautifulsoup4 = "*"
+streamlit = "*"
+pyyaml = "*"
+seaborn = "*"
+python-box = "*"
+nba-mvp-predictor = {editable = true, path = "./nba_mvp_predictor"}
+scikit-learn = "*"
+lxml = "*"
+shap = "*"
+
+[dev-packages]
+black = "*"
+isort = "*"
+pylint = "*"
+
+[requires]
+python_version = "3.10"
+
+[pipenv]
+allow_prereleases = true
